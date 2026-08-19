@@ -64,36 +64,42 @@
     <div class="container">
         <h2>Game Selector</h2>
         
-        <!-- Row of buttons -->
         <div class="button-grid">
-            <button class="game-btn" data-slug="amongus">Among Us</button>
-            <button class="game-btn" data-slug="retro-bowl">Retro Bowl</button>
-            <button class="game-btn" data-slug="1v1lol">1v1.LOL</button>
-            <button class="game-btn" data-slug="slope">Slope</button>
+            <button class="game-btn">AmongUs</button>
+            <button class="game-btn">RetroBowl</button>
+            <button class="game-btn">1v1lol</button>
+            <button class="game-btn">Slope</button>
         </div>
 
-        <!-- Displays selected game -->
         <div class="frame-container">
-            <iframe id="gameFrame" src="https://free-file-converter.github.io/Conversion/amongus.html"></iframe>
+            <iframe id="gameFrame" src=""></iframe>
         </div>
     </div>
 
     <script>
-        const baseUrl = 'https://free-file-converter.github.io/Conversion/';
+        const baseUrl = 'https://free-file-conversion.github.io/Conversion/';
         const buttons = document.querySelectorAll('.game-btn');
         const frame = document.getElementById('gameFrame');
 
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active state
-                buttons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+        function loadGame(button) {
+            // Variable created from the button's text, converted to lowercase
+            const gameName = button.innerText.trim().toLowerCase();
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
 
-                // Load corresponding HTML file
-                const slug = button.getAttribute('data-slug');
-                frame.src = `${baseUrl}${slug}.html`;
-            });
+            // Sets iframe URL: https://free-file-conversion.github.io/Conversion/gamename.html
+            frame.src = `${baseUrl}${gameName}.html`;
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => loadGame(button));
         });
+
+        // Load the first button by default on page start
+        if (buttons.length > 0) {
+            loadGame(buttons[0]);
+        }
     </script>
 
 </body>
