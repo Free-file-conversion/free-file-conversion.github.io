@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Launcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f8fb;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+        }
 
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .game-btn {
+            background-color: #ffffff;
+            color: #0d6efd;
+            border: 2px solid #0d6efd;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .game-btn:hover, .game-btn.active {
+            background-color: #0d6efd;
+            color: #ffffff;
+        }
+
+        .frame-container {
+            width: 100%;
+            height: 650px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 2px solid #e0e8f0;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Game Selector</h2>
+        
+        <!-- Row of buttons -->
+        <div class="button-grid">
+            <button class="game-btn" data-slug="amongus">Among Us</button>
+            <button class="game-btn" data-slug="retro-bowl">Retro Bowl</button>
+            <button class="game-btn" data-slug="1v1lol">1v1.LOL</button>
+            <button class="game-btn" data-slug="slope">Slope</button>
+        </div>
+
+        <!-- Displays selected game -->
+        <div class="frame-container">
+            <iframe id="gameFrame" src="https://free-file-converter.github.io/Conversion/amongus.html"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const baseUrl = 'https://free-file-converter.github.io/Conversion/';
+        const buttons = document.querySelectorAll('.game-btn');
+        const frame = document.getElementById('gameFrame');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Load corresponding HTML file
+                const slug = button.getAttribute('data-slug');
+                frame.src = `${baseUrl}${slug}.html`;
+            });
+        });
+    </script>
+
+</body>
+</html>
