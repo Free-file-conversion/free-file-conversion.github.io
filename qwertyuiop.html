@@ -6,3 +6,34 @@
     <link rel="icon" type="image/x-icon" href="IMG_2637.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <body>
+    <!-- 1. THE LOGIN SCREEN -->
+    <div id="login-box">
+        <h2>Enter Password to Access Content</h2>
+        <input type="password" id="password-input" placeholder="Enter password here">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+
+    <!-- 2. THE HIDDEN CONTENT -->
+    <div id="secret-content" style="display: none;">
+        <h1>Welcome to the Secret Page!</h1>
+        <p>Success! You entered the correct password ("jithub").</p>
+    </div>
+
+    <!-- 3. THE JAVASCRIPT LOGIC -->
+    <script>
+        function checkPassword() {
+            // Get the text that the user typed in
+            const userInput = document.getElementById("password-input").value;
+            
+            // Check if the input exactly matches "jithub"
+            if (userInput === "jithub") {
+                // Hide the login form
+                document.getElementById("login-box").style.display = "none";
+                // Show the hidden secret content
+                document.getElementById("secret-content").style.display = "block";
+            } else {
+                // Show an error message if the password is wrong
+                document.getElementById("error-message").innerText = "Incorrect password. Try again!";
+            }
