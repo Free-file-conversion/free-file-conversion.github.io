@@ -19,8 +19,8 @@
         <script>
             import { sha256 } from "https://cdn.jsdelivr.net/npm/hash-wasm@4/dist/index.esm.min.js";
 
-            unlock.onclick = () => {
-                let input = pass.value;
+            document.getElementById("unlock").onclick = () => {
+                let input = document.getElementById("pass").value;
                 let hashed = sha256(input);
 
                 if (hashed == "1ffc368a31e7541dad759337a997f5867c51459c264f6d6d2b16201d95bf6aeb") {
