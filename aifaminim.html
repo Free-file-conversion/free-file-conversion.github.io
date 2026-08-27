@@ -69,47 +69,7 @@
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h2>Game Selector</h2>
-        
-        <div class="button-grid">
-            <button class="game-btn">AmongUs</button>
-            <button class="game-btn">RetroBowl</button>
-            <button class="game-btn">1v1lol</button>
-            <button class="game-btn">Slope</button>
-        </div>
-
-        <div class="frame-container">
-            <iframe id="gameFrame" src=""></iframe>
-        </div>
-    </div>
-
-    <script>
-        const baseUrl = 'https://free-file-conversion.github.io/Conversion/';
-        const buttons = document.querySelectorAll('.game-btn');
-        const frame = document.getElementById('gameFrame');
-
-        function loadGame(button) {
-            // Variable created from the button's text, converted to lowercase
-            const gameName = button.innerText.trim().toLowerCase();
-            
-            buttons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // Sets iframe URL: https://free-file-conversion.github.io/Conversion/gamename.html
-            frame.src = `${baseUrl}${gameName}.html`;
-        }
-
-        buttons.forEach(button => {
-            button.addEventListener('click', () => loadGame(button));
-        });
-
-        // Load the first button by default on page start
-        if (buttons.length > 0) {
-            loadGame(buttons[0]);
-        }
-    </script>
-
+    <h1>Games by MINI MAFIA!!!</h1>
+    <p>i will work on this in a second</p>
 </body>
 </html>
