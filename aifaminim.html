@@ -97,10 +97,12 @@
         async function loadGmsJson() {
             const div = document.getElementById("links");
 
-            const json = await (await fetch("/assets/gms.json")).json;
+            const response = await fetch("/assets/gms.json");
+            const json = await (response).json;
             for (const [name, path] of json) {
                 let a = document.createElement("a");
-                [a.href, a.innerText] = [path, name];
+                a.href = path;
+                a.innerText = name;
 
                 div.appendChild(a);
             }
