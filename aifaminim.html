@@ -86,20 +86,24 @@
     <h1>Games by MINI MAFIA!!!</h1>
     <p class="fancyfancyahh">I will work on this in a second</p>
     <br>
-    <a onclick="loadGame('/assets/1v1-lol.html')">1v1.lol</a>
-    <br>
-    <a onclick="loadGame('/assets/airmash.html')">Airmash</a>
-    <br>
-    <a onclick="loadGame('/assets/amogus.html')">Among Us</a>
-    <br>
-    <a onclick="loadGame('/assets/asmallworldcup.html')">A Small World Cup</a>
-    <br>
-    <a onclick="loadGame('/assets/drift-boss.html')">Drift Boss</a>
     
+    <div id="links"></div>
     <script>
         function loadGame(game) {
             localStorage.setItem("g", game);
             window.location.href = "/assets/iframe.html";
+        }
+
+        async function loadGmsJson() {
+            const div = document.getElementById("links");
+            
+            const json = await (await fetch("/assets/gms.json")).json;
+            for (const [name, path] of json) {
+                let a = document.createElement("a");
+                [a.href, a.innerText] = [path, name];
+
+                div.appendChild(a);
+            }
         }
     </script>
 </body>
