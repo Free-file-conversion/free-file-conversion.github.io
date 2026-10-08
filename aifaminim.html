@@ -99,7 +99,7 @@
 
             const response = await fetch("/assets/gms.json");
             const json = await response.json();
-            for (const [name, path] of json) {
+            for (const {name, path} of json) {
                 let a = document.createElement("a");
                 a.href = path;
                 a.innerText = name;
