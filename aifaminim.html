@@ -108,7 +108,7 @@
             const json = await response.json();
             for (const {name, path} of json) {
                 let a = document.createElement("a");
-                a.href = `javascript:loadGame(${path})`;
+                a.href = `javascript:loadGame("${path}")`;
                 a.innerText = name + "\n";
 
                 div.appendChild(a);
