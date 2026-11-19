@@ -85,6 +85,16 @@
         #links{
 
         }
+        .background {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  height: 100%;
+  width:100%;
+  pointer-events: none;
+}
     </style>
 </head>
 <body>
@@ -115,5 +125,57 @@
 
         loadGmsJson();
     </script>
+    <script>                
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointerQuery = window.matchMedia('(pointer: fine)');
+const hoverQuery = window.matchMedia('(hover: hover)');
+const pointer = document.querySelector('.pointer');
+function setupPointer() {
+  const shouldRun =
+    !prefersReducedMotion &&
+    finePointerQuery.matches &&
+    hoverQuery.matches;
+  if (!pointer) return;
+  if (!shouldRun) {
+    pointer.style.display = 'none';
+    return;
+  }
+  pointer.style.display = 'block';
+  let mouseX = 0;
+  let mouseY = 0;
+  let frame = null;
+  const update = () => {
+    pointer.style.setProperty('--mouseX', mouseX + 'px');
+    pointer.style.setProperty('--mouseY', mouseY + 'px');
+    frame = null;
+  };
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!frame) {
+      frame = requestAnimationFrame(update);
+    }
+  });
+}
+setupPointer();
+</script>
+<canvas class="background"></canvas>
+<script type="module">
+    import particlesjs from 'https://cdn.jsdelivr.net/npm/particlesjs@2.2.3/+esm';
+
+    particlesjs.init({
+        selector: '.background',
+        color: 'rgba(0, 255, 255, 1)',
+        connectParticles: false,
+        responsive: [
+            {
+                breakpoint: 768,
+                options: {
+                    maxParticles: 50
+                }
+            }
+        ]
+    });
+</script>
 </body>
 </html>
