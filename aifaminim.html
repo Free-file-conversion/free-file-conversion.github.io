@@ -85,7 +85,6 @@
             pointer-events: none;
         }
 
-        /* Game Links Grid & Cloak Cards Grid */
         #links, .cloak-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -133,7 +132,7 @@
             object-fit: contain;
         }
 
-        /* Settings Section Styling */
+        /* from spectre */
         #settings-view {
             display: none;
             max-width: 1000px;
@@ -180,13 +179,13 @@
 </head>
 <body>
 
-    <!-- Navigation Buttons -->
+    
     <div class="top-nav">
         <button id="btn-games" class="nav-btn active" onclick="switchView('games')">Games</button>
         <button id="btn-settings" class="nav-btn" onclick="switchView('settings')">Settings</button>
     </div>
 
-    <!-- Main Games View -->
+    
     <div id="games-view">
         <h1>Games by MINI MAFIA!!!</h1>
         <p class="fancyfancyahh">I will work on this in a second</p>
@@ -194,14 +193,14 @@
         <div id="links"></div>
     </div>
 
-    <!-- Settings View (Hidden by default) -->
+
     <div id="settings-view">
         <h1>Settings</h1>
-        <p class="fancyfancyahh">Disguise your tab</p>
+        <p class="fancyfancyahh">favicons later</p>
         
         <h2 class="settings-header">Tab Cloaks</h2>
         <div class="cloak-grid" id="cloak-grid">
-            <!-- Cloak presets injected via JS -->
+    
         </div>
 
         <h2 class="settings-header">Custom Cloak</h2>
@@ -213,7 +212,7 @@
     </div>
 
     <script>
-        // --- View Switching Logic ---
+    
         function switchView(view) {
             const gamesView = document.getElementById("games-view");
             const settingsView = document.getElementById("settings-view");
@@ -233,7 +232,7 @@
             }
         }
 
-        // --- Tab Cloak Presets & Logic ---
+        
         const cloaks = [
             {
                 id: "default",
@@ -296,12 +295,13 @@
             const favicon = document.getElementById("favicon");
             favicon.href = icon;
 
-            // Save to localStorage
+            
             localStorage.setItem("cloakTitle", title);
             localStorage.setItem("cloakIcon", icon);
             localStorage.setItem("cloakId", id);
 
-            // Highlight selected preset card
+          
+            
             document.querySelectorAll(".cloak-card").forEach(card => {
                 card.classList.remove("selected");
                 if (card.dataset.id === id) {
@@ -355,7 +355,7 @@
 
         initCloaks();
 
-        // --- Original Game Loading Logic ---
+        
         function loadGame(game) {
             localStorage.setItem("g", game);
             window.location.href = "/assets/iframe.html";
